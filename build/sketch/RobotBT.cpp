@@ -35,18 +35,12 @@ void RobotBT::playTone(int note, int duration) {
     noTone(pinBuzzer);
 }
 
-
 /// @brief Obtiene el valor de 'datos' recibido por el BT.
 char RobotBT::getDatos() {
     if (BT->available()) {
         return (char)BT->read();  // Devolver el dato leído
     }
     return '\0';  // Devolver null character si no hay datos disponibles            // Devolver el dato leído
-}
-
-/// @brief Retorna True si se ha recibido datos del BT.
-bool RobotBT::isAvailableBT(){
-    return BT->available() > 0;
 }
 
 /// @brief Envía un comando AT al BT y escribe la respuesta en SERIAL

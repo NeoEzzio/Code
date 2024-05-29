@@ -1,17 +1,5 @@
 #include "RobotBT.h"
 
-// Constantes para el Buzzer
-#define NOTE_C4 262
-#define NOTE_D4 294
-#define NOTE_E4 330
-#define NOTE_F4 349
-#define NOTE_G4 392
-#define NOTE_A4 440
-#define NOTE_B4 494
-#define NOTE_C5 523
-#define DURATION_SHORT 150
-#define DURATION_LONG 300
-
 // Definición de pines para el módulo Bluetooth (HC-06)
 #define RX_PIN 2    // Pin RX (recepción) para la comunicación serial
 #define TX_PIN 3    // Pin TX (transmisión) para la comunicación serial
@@ -30,17 +18,13 @@
 #define BAUD_RATE 9600 // Para el HC-05
 #define NOMBRE_BT "Dannalamaslinda"
 #define PASSWORD_BT "2604"
-
 RobotBT* robot;
-int flag1 = -1;
-int flag2 = -1;
 
 void setup() {
-  Serial.begin(9600); // Inicializar la comunicación serial con el PC
   robot = new RobotBT(RX_PIN, TX_PIN, BUZZER_PIN, VELOCIDAD, MOTOR_DER_1, MOTOR_DER_2, MOTOR_IZQ_3, MOTOR_IZQ_4, BAUD_RATE);
 
   //robot->sendATCommand("AT+NAME=" + String(NOMBRE_BT));  // Establecer el nombre
-  //robot->sendATCommand("AT+PSWD=" + String(PASSWORD_BT));  // Obtener el PIN actual
+  //robot->sendATCommand("AT+PSWD=" + String(PASSWORD_BT));  // Establecer el PIN
   robot->clearBT();  // Limpiar
 }
 
@@ -61,22 +45,7 @@ void loop() {
     robot->turnRight();
     break;
   case 'T':
-    robot->playTone(NOTE_C4, DURATION_SHORT);
-    robot->playTone(NOTE_D4, DURATION_SHORT);
-    robot->playTone(NOTE_E4, DURATION_SHORT);
-    robot->playTone(NOTE_C4, DURATION_SHORT);
-    delay(DURATION_SHORT);
-
-    robot->playTone(NOTE_E4, DURATION_SHORT);
-    robot->playTone(NOTE_F4, DURATION_SHORT);
-    robot->playTone(NOTE_G4, DURATION_LONG);
-    delay(DURATION_SHORT);
-
-    robot->playTone(NOTE_G4, DURATION_SHORT);
-    robot->playTone(NOTE_F4, DURATION_SHORT);
-    robot->playTone(NOTE_E4, DURATION_SHORT);
-    robot->playTone(NOTE_C4, DURATION_LONG);
-    delay(DURATION_LONG);
+    robot->playTone(100, 1000);
     break;
   case 'S':
     robot->turnLeftFast();

@@ -1,8 +1,6 @@
 # 1 "C:\\Users\\david\\OneDrive\\Escritorio\\Microcontroladores\\robot\\Code\\Code.ino"
 # 2 "C:\\Users\\david\\OneDrive\\Escritorio\\Microcontroladores\\robot\\Code\\Code.ino" 2
 
-// Constantes para el Buzzer
-# 15 "C:\\Users\\david\\OneDrive\\Escritorio\\Microcontroladores\\robot\\Code\\Code.ino"
 // Definición de pines para el módulo Bluetooth (HC-06)
 
 
@@ -21,17 +19,13 @@
 
 
 
-
 RobotBT* robot;
-int flag1 = -1;
-int flag2 = -1;
 
 void setup() {
-  Serial.begin(9600); // Inicializar la comunicación serial con el PC
   robot = new RobotBT(2 /* Pin RX (recepción) para la comunicación serial*/, 3 /* Pin TX (transmisión) para la comunicación serial*/, 4, 255, 5 /* Pin de control 1 del motor derecho*/, 6 /* Pin de control 2 del motor derecho*/, 9 /* Pin de control 1 del motor izquierdo*/, 11 /* Pin de control 2 del motor izquierdo*/, 9600 /* Para el HC-05*/);
 
   //robot->sendATCommand("AT+NAME=" + String(NOMBRE_BT));  // Establecer el nombre
-  //robot->sendATCommand("AT+PSWD=" + String(PASSWORD_BT));  // Obtener el PIN actual
+  //robot->sendATCommand("AT+PSWD=" + String(PASSWORD_BT));  // Establecer el PIN
   robot->clearBT(); // Limpiar
 }
 
@@ -40,7 +34,6 @@ void loop() {
   char dato = robot->getDatos();
   switch (dato) {
   case 'F':
-  Serial.println(dato);
     robot->moveForward();
     break;
   case 'B':
@@ -53,22 +46,7 @@ void loop() {
     robot->turnRight();
     break;
   case 'T':
-    robot->playTone(262, 150);
-    robot->playTone(294, 150);
-    robot->playTone(330, 150);
-    robot->playTone(262, 150);
-    delay(150);
-
-    robot->playTone(330, 150);
-    robot->playTone(349, 150);
-    robot->playTone(392, 300);
-    delay(150);
-
-    robot->playTone(392, 150);
-    robot->playTone(349, 150);
-    robot->playTone(330, 150);
-    robot->playTone(262, 300);
-    delay(300);
+    robot->playTone(100, 1000);
     break;
   case 'S':
     robot->turnLeftFast();

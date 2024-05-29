@@ -38,9 +38,6 @@ public:
     /// @brief Obtiene el valor de 'datos' recibido por el BT.
     char getDatos();
 
-    /// @brief Retorna True si se ha recibido datos del BT.
-    bool isAvailableBT();
-
     /// @brief Limpia los datos de entrada del BT.
     void clearBT();
 

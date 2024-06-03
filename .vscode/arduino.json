@@ -1,0 +1,5 @@
+{
+    "sketch": "Code\\Code.ino",
+    "board": "arduino:avr:uno",
+    "port": "COM3"
+}
